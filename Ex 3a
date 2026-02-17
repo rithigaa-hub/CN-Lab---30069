@@ -1,0 +1,29 @@
+import java.net.*;
+import java.io.*;
+
+public class Server {
+    public static final int PORT = 4000;
+
+    public static void main(String args[]) {
+        try (ServerSocket sersock = new ServerSocket(PORT)) {
+            System.out.println("Server Started: " + sersock);
+            
+            // Wait for client connection
+            try (Socket sock = sersock.accept()) {
+                System.out.println("Client Connected: " + sock);
+                
+                // Read from client using BufferedReader (standard practice)
+                BufferedReader ins = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+                System.out.println("Client says: " + ins.readLine());
+                
+                // Write to client
+                PrintWriter ios = new PrintWriter(sock.getOutputStream(), true);
+                ios.println("Hello from server");
+                
+                System.out.println("Connection from: " + sock.getInetAddress());
+            } 
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
