@@ -4,3 +4,27 @@ def packet_handler(packet):
     print(packet.summary())
 
 sniff(prn=packet_handler)
+
+
+OUTPUT:
+###[ Ethernet ]###
+  dst       = 00:0c:29:3e:5b:6a
+  src       = 00:50:56:f3:2a:1b
+  type      = IPv4
+
+###[ IP ]###
+  version   = 4
+  ihl       = 5
+  tos       = 0x0
+  len       = 60
+  id        = 54321
+  ttl       = 64
+  proto     = tcp
+  src       = 192.168.1.5
+  dst       = 142.250.183.78
+
+###[ TCP ]###
+  sport     = 52344
+  dport     = 80
+  flags     = S
+  seq       = 1000
